@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lula vs Bolsonaro — demonstração histórica arquivada</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#020817;color:#fff;font-family:'Segoe UI',sans-serif}body{display:grid;place-items:center;min-height:100dvh}
+.arena{position:relative;height:100dvh;max-width:100vw;aspect-ratio:9/16;container-type:inline-size;overflow:hidden;isolation:isolate;background:#020817}
+.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;animation:breathe 7s ease-in-out infinite alternate}
+.wash{position:absolute;inset:0;z-index:-2;background:linear-gradient(#0007,transparent 15%,transparent 38%,#02081744 46%,transparent 78%,#020817aa 100%)}
+header{position:absolute;top:3.5%;left:0;width:100%;text-align:center}header small{font-size:1.7cqw;letter-spacing:.5cqw;color:#b8cced}h1{font-family:Impact,'Arial Narrow',sans-serif;font-weight:900;font-size:7cqw;letter-spacing:.15cqw;margin:1cqw 0;line-height:1.15;text-shadow:0 .4cqw 1cqw #000}h1 span{font-family:Arial,sans-serif;font-size:3.5cqw;color:#ffd585;padding:0 1.3cqw}
+.versus{position:absolute;left:43%;top:25%;width:14%;aspect-ratio:1;display:grid;place-items:center;font-family:Impact,sans-serif;font-size:7cqw;font-style:italic;color:#ffe4a3;text-shadow:0 0 3cqw #ff9623;transform:rotate(-8deg);animation:vs-pulse 2s infinite alternate}
+.names{position:absolute;top:42%;left:5%;width:90%;display:flex;justify-content:space-between;gap:10%;text-align:center}.names>div{width:45%;font-family:Impact,sans-serif;font-size:4.8cqw;letter-spacing:.1cqw;text-shadow:0 .4cqw 1cqw #000}.red{--color:#ff5267;--dark:#6b102d}.green{--color:#38f1bd;--dark:#05614f}.names strong{display:block;color:var(--color);font-size:6cqw}.names small{font:500 2cqw 'Segoe UI',sans-serif;color:#d3def1}
+.target{position:absolute;left:50%;top:50%;transform:translateX(-50%);font-size:2cqw;letter-spacing:.2cqw;padding:1.1cqw 2.8cqw;border:1px solid #eac47970;border-radius:5cqw;color:#ffe1a6;background:#171727d9;white-space:nowrap}
+.tower{position:absolute;bottom:19.3%;width:29%;height:23%;display:flex;flex-direction:column-reverse;gap:.65cqw;align-items:center;filter:drop-shadow(0 0 2cqw color-mix(in srgb,var(--color) 25%,transparent))}.tower.red{left:8.5%}.tower.green{right:8.5%}
+.row{width:100%;height:1.8cqw;flex-shrink:0;display:flex;gap:.7cqw;animation:land .48s cubic-bezier(.2,.8,.4,1.2) both}.row i{height:100%;flex:1;border-top:.45cqw solid color-mix(in srgb,var(--color) 45%,white);border-right:.65cqw solid var(--dark);background:linear-gradient(145deg,var(--color),var(--dark));border-radius:.35cqw;box-shadow:0 .45cqw 0 #0005}
+.shield{position:absolute;bottom:18.5%;height:28%;width:35%;border:.6cqw solid #8fdfff;border-radius:45% 45% 12% 12%;background:repeating-linear-gradient(60deg,#7be3ff09 0 2cqw,transparent 2cqw 4cqw);box-shadow:inset 0 0 7cqw #41d9ff45,0 0 4cqw #5fcaff77;opacity:0;transition:opacity .3s;pointer-events:none}.shield.a{left:5.5%}.shield.b{right:5.5%}.shield.active{opacity:1;animation:shield-pulse .75s infinite alternate}
+.projectile{position:absolute;top:67%;left:22%;width:6%;height:2%;border-radius:50%;background:#fff3ba;box-shadow:0 0 2cqw #fff,0 0 6cqw #ff9126;opacity:0;pointer-events:none}.projectile.fire{animation:attack .8s ease-in forwards}.projectile.reverse{animation:attack-back .8s ease-in forwards}
+.burst{position:absolute;top:69%;left:74%;font-family:Impact,sans-serif;color:#a3eeff;font-size:5cqw;opacity:0;transform:translateX(-50%);white-space:nowrap}.burst.show{animation:pop 1.3s ease-out}.burst.left{left:25%}
+.notice{position:absolute;top:55%;left:8%;right:8%;text-align:center;font-size:2.7cqw;font-weight:700;color:#fff1c7;text-shadow:0 0 2cqw #000;min-height:4cqw}.notice.flash{animation:notice .5s ease-out}
+.particles{position:absolute;inset:0;pointer-events:none}.spark{position:absolute;width:.5cqw;height:1.7cqw;border-radius:100%;bottom:8%;background:var(--spark);box-shadow:0 0 1.4cqw var(--spark);animation:float-up var(--duration) linear infinite;animation-delay:var(--delay);left:var(--x)}
+.winner{position:absolute;inset:0;background:radial-gradient(ellipse,#101e3cdc,#02081799);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .4s;z-index:5}.winner.active{opacity:1;visibility:visible}.winner .cup{font-size:15cqw;animation:trophy .9s ease-in-out infinite alternate}.winner small{font-size:2.5cqw;letter-spacing:.4cqw;color:#e7cda1}.winner strong{font-family:Impact,sans-serif;font-size:12cqw;color:var(--winner-color,#fff);text-shadow:0 0 8cqw var(--winner-color)}.winner p{font-size:3cqw;letter-spacing:.2cqw}
+footer{position:absolute;bottom:3.5%;left:5%;right:5%;text-align:center;font-size:1.8cqw;color:#c4d2ed;line-height:1.6}footer b{display:block;font-size:2cqw;color:#f4d3a2;font-weight:500;letter-spacing:.1cqw}.controls{position:fixed;right:12px;bottom:12px;z-index:10}button{background:#15243ae8;border:1px solid #6480a5;color:#dfebff;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:12px}button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.paused *{animation-play-state:paused!important}
+@keyframes breathe{to{transform:scale(1.018) translateY(-.3%)}}@keyframes vs-pulse{to{filter:brightness(1.4);transform:rotate(-8deg) scale(1.1)}}@keyframes land{from{opacity:0;transform:translateY(-10cqw) rotate(-4deg)}70%{transform:translateY(.4cqw)}to{opacity:1;transform:none}}@keyframes float-up{0%{transform:translateY(0);opacity:0}15%{opacity:.9}85%{opacity:.7}100%{transform:translateY(-135cqw) translateX(5cqw);opacity:0}}@keyframes shield-pulse{to{filter:brightness(1.4)}}@keyframes attack{0%{left:22%;opacity:0;transform:scale(.3)}15%{opacity:1}85%{opacity:1}100%{left:74%;opacity:0;transform:scale(1.8)}}@keyframes attack-back{0%{left:74%;opacity:0;transform:scale(.3)}15%{opacity:1}85%{opacity:1}100%{left:22%;opacity:0;transform:scale(1.8)}}@keyframes pop{20%{opacity:1;transform:translate(-50%,-2cqw) scale(1.2)}70%{opacity:1}100%{opacity:0;transform:translate(-50%,-7cqw)}}@keyframes notice{from{opacity:0;transform:translateY(2cqw)}to{opacity:1;transform:none}}@keyframes trophy{to{transform:translateY(-2cqw) rotate(4deg)}}
+@media(prefers-reduced-motion:reduce){.art,.spark,.versus{animation:none}.row{animation-duration:.01s}}
+</style>
+</head>
+<body>
+<main class="arena" aria-label="Prévia animada de Lula versus Bolsonaro">
+<img class="art" src="/assets/backgrounds/lula-bolsonaro-cartoon-v1.png" alt="Lula e Bolsonaro em estilo cartoon, em lados opostos de uma arena iluminada">
+<div class="wash"></div>
+<header><small>TOWER ARENA · DUELO DE TORRES</small><h1>LULA <span>VS</span> BOLSONARO</h1></header>
+<div class="versus" aria-hidden="true">VS</div>
+<div class="names"><div class="red">LULA<strong id="score-a">0</strong><small>BLOCOS</small></div><div class="green">BOLSONARO<strong id="score-b">0</strong><small>BLOCOS</small></div></div>
+<div class="target">★ PRIMEIRO A 300 BLOCOS ★</div>
+<div class="notice" id="notice">Construa sua torre!</div>
+<div class="tower red" id="tower-a" aria-hidden="true"></div><div class="tower green" id="tower-b" aria-hidden="true"></div>
+<div class="shield a"></div><div class="shield b"></div><div class="projectile"></div><div class="burst">BLOQUEADO!</div>
+<div class="particles" aria-hidden="true"></div>
+<div class="winner"><div class="cup">🏆</div><small>RODADA ENCERRADA</small><strong id="winner-name"></strong><p>VENCEU A RODADA!</p></div>
+<footer><b>PRÉVIA ANIMADA · CICLO DE DEMONSTRAÇÃO</b>Jogo interativo da LIVE • Não representa pesquisa ou votação oficial.</footer>
+</main><div class="controls"><button id="toggle" type="button">Pausar animação</button></div>
+<script>
+const arena=document.querySelector('.arena'),notice=document.querySelector('#notice');
+const towers=[document.querySelector('#tower-a'),document.querySelector('#tower-b')];
+const scores=[document.querySelector('#score-a'),document.querySelector('#score-b')];
+const shields=[document.querySelector('.shield.a'),document.querySelector('.shield.b')];
+const projectile=document.querySelector('.projectile'),burst=document.querySelector('.burst'),winner=document.querySelector('.winner');
+let phase=-1,cycle=0,paused=false,last=performance.now(),elapsed=0;
+for(let i=0;i<32;i++){const spark=document.createElement('i');spark.className='spark';spark.style.cssText=`--x:${(i*37)%100}%;--spark:${i%2?'#42ffd4':'#ff5969'};--duration:${3+i%5}s;--delay:-${i*.47}s`;document.querySelector('.particles').append(spark);}
+function announce(text){notice.textContent=text;notice.classList.remove('flash');void notice.offsetWidth;notice.classList.add('flash');}
+function points(a,b){[a,b].forEach((value,index)=>{scores[index].textContent=value;const count=Math.round(value/15);while(towers[index].children.length<count){const row=document.createElement('div');row.className='row';row.innerHTML='<i></i><i></i><i></i><i></i>';towers[index].append(row);}while(towers[index].children.length>count)towers[index].lastChild.remove();});}
+function shot(reverse=false){projectile.className='projectile';burst.className=`burst ${reverse?'left':''}`;void projectile.offsetWidth;projectile.classList.add(reverse?'reverse':'fire');setTimeout(()=>burst.classList.add('show'),650);}
+function step(n){
+ if(n===0){points(0,0);winner.classList.remove('active');shields.forEach(s=>s.classList.remove('active'));announce('Construa sua torre!');}
+ if(n>0&&n<8){points(n*20,n*20-5);announce(n%2?'Presente recebido · +20 blocos':'Combo de presentes · torre subindo!');}
+ if(n===8){shields[1].classList.add('active');announce('Escudo ativado!');}
+ if(n===9){shot();announce('Ataque! O escudo protege a torre.');}
+ if(n===11){shields[1].classList.remove('active');points(175,170);announce('As duas torres continuam crescendo');}
+ if(n===12){shields[0].classList.add('active');announce('Escudo ativado!');}
+ if(n===13){shot(true);announce('Contra-ataque bloqueado!');}
+ if(n===15){shields[0].classList.remove('active');points(210,205);announce('Meta de likes · multiplicador ×2 para ambos!');}
+ if(n===17){points(250,245);announce('Combo ×2 · +40 blocos!');}
+ if(n===19){points(cycle%2?280:300,cycle%2?300:280);announce('Meta alcançada!');document.querySelector('#winner-name').textContent=cycle%2?'BOLSONARO':'LULA';winner.style.setProperty('--winner-color',cycle%2?'#46ffd0':'#ff7187');winner.classList.add('active');}
+}
+function frame(now){if(!paused)elapsed+=Math.min(now-last,100);last=now;const next=Math.floor(elapsed/1000);if(next!==phase){phase=next;step(phase);}if(elapsed>=24000){elapsed=0;phase=-1;cycle++;}requestAnimationFrame(frame);}
+document.querySelector('#toggle').onclick=event=>{paused=!paused;arena.classList.toggle('paused',paused);event.target.textContent=paused?'Continuar animação':'Pausar animação';};
+requestAnimationFrame(frame);
+</script>
+</body></html>
